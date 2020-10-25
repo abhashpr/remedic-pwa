@@ -1,10 +1,10 @@
 const video = document.getElementById('video')
 
 Promise.all([
-  faceapi.nets.tinyFaceDetector.loadFromUri('../models'),
-  faceapi.nets.faceLandmark68Net.loadFromUri('../models'),
-  //faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
-  //faceapi.nets.faceExpressionNet.loadFromUri('/models')
+  faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
+  faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
+  //faceapi.nets.faceRecognitionNet.loadFromUri('models'),
+  //faceapi.nets.faceExpressionNet.loadFromUri('models')
 ]).then(startVideo)
 
 function startVideo() {
@@ -20,7 +20,6 @@ const arr_ = [8, 19, 24, 30, 31, 50];
 var k = 1;
 
 function detectGraph(pt, ctx) {
-  console.log('Im getting called');
   if (arr_.includes(counter)) {
     k = k * -1;
     x0 = pt._x;
