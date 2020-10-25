@@ -1,1 +1,3 @@
 # remedic-pwa
+
+/* @REMEDIC */
