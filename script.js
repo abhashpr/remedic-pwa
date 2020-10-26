@@ -1,8 +1,8 @@
 const video = document.getElementById('video')
 
 Promise.all([
-  faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
-  faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
+  //faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
+  //faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
   //faceapi.nets.faceRecognitionNet.loadFromUri('models'),
   //faceapi.nets.faceExpressionNet.loadFromUri('models')
 ]).then(startVideo)
@@ -89,38 +89,38 @@ function detectWheel(pt, ctx) {
     counter++
 }
 
-video.addEventListener('play', () => {
-  const canvas = faceapi.createCanvasFromMedia(video)
-  document.body.append(canvas)
+// video.addEventListener('play', () => {
+//   const canvas = faceapi.createCanvasFromMedia(video)
+//   document.body.append(canvas)
   
-  const displaySize = { width: video.width, height: video.height }
-  faceapi.matchDimensions(canvas, displaySize)
+//   const displaySize = { width: video.width, height: video.height }
+//   faceapi.matchDimensions(canvas, displaySize)
   
-  setInterval(async () => {
-    const detections = await faceapi
-                                .detectAllFaces(video, new faceapi.TinyFaceDetectorOptions())
-                                .withFaceLandmarks()
-    const resizedDetections = faceapi
-                                .resizeResults(detections, displaySize)
+//   setInterval(async () => {
+//     const detections = await faceapi
+//                                 .detectAllFaces(video, new faceapi.TinyFaceDetectorOptions())
+//                                 .withFaceLandmarks()
+//     const resizedDetections = faceapi
+//                                 .resizeResults(detections, displaySize)
     
-    var ctx = canvas.getContext('2d');
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    counter = 0;
+//     var ctx = canvas.getContext('2d');
+//     ctx.clearRect(0, 0, canvas.width, canvas.height);
+//     counter = 0;
     
-    face_half = resizedDetections[0].landmarks._positions[15]._x - 
-                resizedDetections[0].landmarks._positions[29]._x;
+//     face_half = resizedDetections[0].landmarks._positions[15]._x - 
+//                 resizedDetections[0].landmarks._positions[29]._x;
     
-    // faceapi.draw.drawDetections(canvas, resizedDetections)
-    // faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
+//     // faceapi.draw.drawDetections(canvas, resizedDetections)
+//     // faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
 
-    resizedDetections[0].landmarks._positions.forEach(
-      (pt) => 
-        {
-          detectGraph(pt, ctx);
-          //detectWheel(pt, ctx);
-        }
-    )
+//     resizedDetections[0].landmarks._positions.forEach(
+//       (pt) => 
+//         {
+//           detectGraph(pt, ctx);
+//           //detectWheel(pt, ctx);
+//         }
+//     )
 
-    // faceapi.draw.drawFaceExpressions(canvas, resizedDetections)
-  }, 100)
-})
+//     // faceapi.draw.drawFaceExpressions(canvas, resizedDetections)
+//   }, 100)
+// })
